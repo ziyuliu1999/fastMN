@@ -1,0 +1,71 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# fastMN
+
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/ziyuliu1999/fastMN/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ziyuliu1999/fastMN/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
+<!-- badges: start -->
+  [![Codecov test coverage](https://codecov.io/gh/ziyuliu1999/fastMN/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ziyuliu1999/fastMN?branch=main)
+  <!-- badges: end -->
+
+## Overview
+
+hw3_lm is a R package created for the biostat625 homework 3. hw3_lm contain two function which are `linear_regression(X, Y)` and `sum_func(numbs)`
+
+`linear_regression(X, Y)` is a function that fit in a linear model with matrix/dataframe Y as the response and matrix/dataframe X as the predictor. The return is expected to get the same result with the `summary(lm(Y ~ X))$coefficients`. The return value is a table with four columns. The first column is the coefficients estimate,  the second columns is the coefficients corresponding standard error, the third columns is the coefficients corresponding t values and the fourth column is the coefficient corresponding p values.
+
+`sum_func(numbs)` is a function that will calculate the sum of the number element in the list. The return is expected to get the same result with `sum(numbs)`. The return will be a number. 
+
+
+## Installation
+
+You can install the development version of fastMN from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("ziyuliu1999/fastMN")
+```
+
+## Example 
+
+This is a basic example which shows you how to solve a common problem using `linear_regression` function in the package:
+
+```{r example}
+library(fastMN)
+set.seed(1)
+x = matrix(rnorm(3*100), nrow = 100, ncol = 3)
+y = matrix(rnorm(1*100), nrow = 100, ncol = 1)
+res = linear_regression(x, y)
+```
+
+We use `rnorm` to generate a $100 \times 3$ dimensional matrix as the predictors of the fitting model and generate a $100 \times 1$ dimensional matrix as the response of the fitting model. To make the code reproducible, let's set the seed to 1.
+
+Here is the return of te `linear_regression` model. The first column is the coefficients estimate, the second column is the standard error of the corresponding coefficients, the third column is the t value of the corresponding coefficients, and the fourth column is the P-value of the coefficients. A same perfomance can be achieved via using the `summary(lm(y ~ x))$coefficients`. 
+
+```{r}
+res
+```
+
+This is a basic example which shows you how to solve a common problem using `sum_func` function in the package:
+
+```{r}
+sum_func(1:10)
+```
+
+
+We used the list number `1, 2, ...10` as a example input used in the `sum_func`.  
