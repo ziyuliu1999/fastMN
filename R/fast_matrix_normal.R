@@ -139,8 +139,8 @@ vectorized_check <- function(Lower, Upper, n, p) {
 #' Y <- fast_rmatnorm(n = n, p = p,U_cov = U, V_cov=V)
 #' @export
 fast_rmatnorm <- function(num_samp = 1,
-                          n,
-                          p,
+                          n = 10,
+                          p = 5,
                           M = NULL,
                           U_cov = NULL,
                           V_cov = NULL,
@@ -151,10 +151,21 @@ fast_rmatnorm <- function(num_samp = 1,
     n <- nrow(M)
     p <- ncol(M)
   }
+  if (!is.null(U_cov)) {
+    n <- nrow(U_cov)
+  }
+  if (!is.null(U_prec)) {
+    n = nrow(U_prec)
+  }
+  if (!is.null(V_cov)) {
+    p = nrow(V_cov)
+  }
+  if (!is.null(V_prec)) {
+    p = nrow(V_prec)
+  }
   if (is.null(M)) {
     M <- matrix(0, nrow = n, ncol = p)
   }
-
   if (useCov) {
     # Default covariance matrices
     if (is.null(U_cov)) {
@@ -394,9 +405,9 @@ fast_pnormmat <-function(Lower = -Inf, # Lower bound matrix
     method <- "mvnorm computation"
   } else if (method == "sobol") {
 
-    if (!requireNamespace("randtoolbox", quietly = TRUE)) {
-      stop("The 'randtoolbox' package is required for the Sobol method. Please install it using install.packages('randtoolbox').")
-    }
+    # if (!requireNamespace("randtoolbox", quietly = TRUE)) {
+    #   stop("The 'randtoolbox' package is required for the Sobol method. Please install it using install.packages('randtoolbox').")
+    # }
     if (is.null(N)) {
       N <- max(2000, 10*n*p)  # Adaptive sample size
     }
