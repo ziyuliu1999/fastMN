@@ -25,6 +25,8 @@ You can install the development version of fastMN from
 devtools::install_github("ziyuliu1999/fastMN")
 ```
 
+You may need to add in your personal github token.
+
 ## Functions
 
 Three main functions introduced in the fastMN package
@@ -80,8 +82,15 @@ V_cov <- crossprod(matrixV)  # Column covariance matrix
 Lower <- matrix(-10, nrow = n, ncol = p)
 Upper <- matrix(10, nrow = n, ncol = p)
 #'
-# Compute the CDF using the naive Monte Carlo method
+# Approximate the CDF using the naive Monte Carlo method
 fast_pnormmat(Lower = Lower, Upper = Upper, M = M, U_cov = U_cov, V_cov = V_cov, method = "naive_monte_carlo", N = 1000)
 #>              method   cdf   log_cdf
 #> 1 naive monte carlo 0.287 -1.248273
+```
+
+``` r
+# Compute the CDF using the mvnorm::pmvnorm
+fast_pnormmat(Lower = Lower, Upper = Upper, M = M, U_cov = U_cov, V_cov = V_cov, method = "pmvnorm")
+#>               method       cdf log_cdf
+#> 1 mvnorm computation 0.2653779 -1.3266
 ```
