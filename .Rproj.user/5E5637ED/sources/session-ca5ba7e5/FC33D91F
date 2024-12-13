@@ -3,7 +3,7 @@
     "path": "~/Documents/GitHub/fastMN/README.Rmd",
     "project_path": "README.Rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "1895840589",
     "contents": "",
     "dirty": false,
     "created": 1734060593191.0,
@@ -13,15 +13,15 @@
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "11,0",
+        "cursorPosition": "15,49",
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1734060835,
+    "lastKnownWriteTime": 1734061127,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1734060835250,
+    "last_content_update": 1734061127497,
     "read_only": false,
     "read_only_alternatives": []
 }
