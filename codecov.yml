@@ -12,3 +12,5 @@ coverage:
         target: auto
         threshold: 1%
         informational: true
+
+CODECOV_TOKEN=44af2b45-927d-41d7-9493-a5c0e1a7f465
