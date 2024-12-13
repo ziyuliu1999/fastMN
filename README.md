@@ -31,7 +31,7 @@ distributions
 
 `fast_dmatnorm`: Calculate PDF of the matrix normal distribution
 
-`fast_rmatnorm`: Calculate CDF of the matrix normal distribution
+`fast_pnormmat`: Calculate CDF of the matrix normal distribution
 
 ## Example
 
