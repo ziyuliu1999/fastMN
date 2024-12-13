@@ -11,7 +11,9 @@ LazyData: true
 RoxygenNote: 7.3.2
 Suggests: 
     testthat (>= 3.0.0),
-    matrixNormal
+    matrixNormal,
+    knitr,
+    rmarkdown
 Config/testthat/edition: 3
 LinkingTo: 
     Rcpp
@@ -20,3 +22,4 @@ Imports:
     stats,
     randtoolbox,
     mvtnorm
+VignetteBuilder: knitr

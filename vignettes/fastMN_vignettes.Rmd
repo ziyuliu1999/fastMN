@@ -1,18 +1,20 @@
 ---
-title: "Fast Matrix Normal Distribution"
-author: "Zachary Apell, Ziyu Liu, Jingze Li"
+title: "fastMN_vignettes"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Fast Matrix Normal Distribution}
+  %\VignetteIndexEntry{fastMN_vignettes}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include=FALSE}
+```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+```
+
+```{r setup}
 library(fastMN)
 ```
 
@@ -34,14 +36,23 @@ U_cov <- diag(n) # Row covariance (identity)
 V_cov <- diag(p) # Column covariance (identity)
 Lower <- matrix(-3, nrow = n, ncol = p)  # Lower bound
 Upper <- matrix(3, nrow = n, ncol = p)   # Upper bound
+```
 
-samples <- fast_rmatnorm(n, p, M, U_cov, V_cov)
-smaples
+```{r}
+samples <- fast_rmatnorm(n = n, p = p, M = M, U_cov = U_cov, V_cov = V_cov)
+samples
+```
+
+```{r}
 pdf <- fast_dmatnorm(Z, M, U_cov, V_cov)
 pdf
+```
+
+```{r}
 cdf <- fast_pnormmat(Lower, Upper, M, U_cov, V_cov, method = "pmvnorm")
 cdf
 ```
+
 
 ## non-identity covariance matrix example
 ```{r}
@@ -56,9 +67,9 @@ V_cov = crossprod(random_matrixV)
 Lower <- matrix(-10, nrow = n, ncol = p)  # Lower bound
 Upper <- matrix(10, nrow = n, ncol = p)   # Upper bound
 
-samples <- fast_rmatnorm(n, p, M, U_cov, V_cov)
-smaples
-pdf <- fast_dmatnorm(Z, M, U_cov, V_cov)
+samples <- fast_rmatnorm(n = n, p = p, M = M, U_cov = U_cov, V_cov = V_cov)
+samples
+pdf <- fast_dmatnorm(samples, M, U_cov, V_cov)
 pdf
 
 # cdf
@@ -89,7 +100,7 @@ fast_pnormmat(
 ```
 
 ## performance check 
-```{r}
+```{r, warning=FALSE}
 microbenchmark::microbenchmark(
   fast_pnormmat(
     Lower = Lower, 
