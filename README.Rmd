@@ -87,7 +87,9 @@ V_cov <- crossprod(matrixV)  # Column covariance matrix
 Lower <- matrix(-10, nrow = n, ncol = p)
 Upper <- matrix(10, nrow = n, ncol = p)
 #'
-# Compute the CDF using the naive Monte Carlo method
+# Approximate the CDF using the naive Monte Carlo method
 fast_pnormmat(Lower = Lower, Upper = Upper, M = M, U_cov = U_cov, V_cov = V_cov, method = "naive_monte_carlo", N = 1000)
+# Compute the CDF using the mvnorm::pmvnorm
+fast_pnormmat(Lower = Lower, Upper = Upper, M = M, U_cov = U_cov, V_cov = V_cov, method = "pmvnorm")
 ```
 
