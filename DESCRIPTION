@@ -13,7 +13,8 @@ Suggests:
     testthat (>= 3.0.0),
     matrixNormal,
     knitr,
-    rmarkdown
+    rmarkdown,
+    microbenchmark
 Config/testthat/edition: 3
 LinkingTo: 
     Rcpp
