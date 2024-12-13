@@ -1,0 +1,121 @@
+---
+title: "Fast Matrix Normal Distribution"
+author: "Zachary Apell, Ziyu Liu, Jingze Li"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Fast Matrix Normal Distribution}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(fastMN)
+```
+
+
+# Introduction
+The matrix normal distribution is widely used in multivariate statistics for modeling data with matrix structures. The main advantage is the ability to model dependencies separately in rows and columns using covariance matrices and preserve the spatial structure in the analysis.
+
+# Examples
+
+## simple example
+```{r}
+set.seed(123)
+# Define parameters
+n <- 5
+p <- 3
+Z <- matrix(rnorm(n * p), nrow = n, ncol = p) # Random matrix
+M <- matrix(0, nrow = n, ncol = p) # Mean matrix
+U_cov <- diag(n) # Row covariance (identity)
+V_cov <- diag(p) # Column covariance (identity)
+Lower <- matrix(-3, nrow = n, ncol = p)  # Lower bound
+Upper <- matrix(3, nrow = n, ncol = p)   # Upper bound
+
+samples <- fast_rmatnorm(n, p, M, U_cov, V_cov)
+smaples
+pdf <- fast_dmatnorm(Z, M, U_cov, V_cov)
+pdf
+cdf <- fast_pnormmat(Lower, Upper, M, U_cov, V_cov, method = "pmvnorm")
+cdf
+```
+
+## non-identity covariance matrix example
+```{r}
+set.seed(123)
+n <- 10
+p <- 5
+M <- matrix(rnorm(n * p, mean = 1, sd = 2), nrow = n, ncol = p)
+random_matrixU <- matrix(rnorm(n^2, mean = 0.3, sd = 0.5), nrow = n, ncol = n)
+random_matrixV <- matrix(rnorm(p^2, mean = -0.1, sd = 0.4), nrow = p, ncol = p)
+U_cov = crossprod(random_matrixU)
+V_cov = crossprod(random_matrixV)
+Lower <- matrix(-10, nrow = n, ncol = p)  # Lower bound
+Upper <- matrix(10, nrow = n, ncol = p)   # Upper bound
+
+samples <- fast_rmatnorm(n, p, M, U_cov, V_cov)
+smaples
+pdf <- fast_dmatnorm(Z, M, U_cov, V_cov)
+pdf
+
+# cdf
+fast_pnormmat(
+  Lower = Lower, 
+  Upper = Upper, 
+  M = M, 
+  U_cov = U_cov, 
+  V_cov = V_cov, 
+  method = "pmvnorm"
+)
+fast_pnormmat(
+  Lower = Lower, 
+  Upper = Upper, 
+  M = M, 
+  U_cov = U_cov, 
+  V_cov = V_cov, 
+  method = "sobol"
+)
+fast_pnormmat(
+  Lower = Lower, 
+  Upper = Upper, 
+  M = M, 
+  U_cov = U_cov, 
+  V_cov = V_cov, 
+  method = "naive_monte_carlo"
+)
+```
+
+## performance check 
+```{r}
+microbenchmark::microbenchmark(
+  fast_pnormmat(
+    Lower = Lower, 
+    Upper = Upper, 
+    M = M, 
+    U_cov = U_cov, 
+    V_cov = V_cov, 
+    method = "sobol",
+    N = 10000
+  ),
+  fast_pnormmat(
+    Lower = Lower, 
+    Upper = Upper, 
+    M = M, 
+    U_cov = U_cov, 
+    V_cov = V_cov, 
+    method = "pmvnorm"
+  ),
+  fast_pnormmat(
+    Lower = Lower, 
+    Upper = Upper, 
+    M = M, 
+    U_cov = U_cov, 
+    V_cov = V_cov, 
+    method = "naive_monte_carlo",
+    N = 10000
+  ),
+  times = 10)
+```
