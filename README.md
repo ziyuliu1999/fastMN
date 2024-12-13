@@ -24,6 +24,15 @@ devtools::install_github("ziyuliu1999/fastMN")
 
 ## Functions
 
+Three main functions introduced in the fastMN package
+
+`fast_rmatnorm`: Sample random variables following matrix normal
+distributions
+
+`fast_dmatnorm`: Calculate PDF of the matrix normal distribution
+
+`fast_rmatnorm`: Calculate CDF of the matrix normal distribution
+
 ## Example
 
 This is a basic example which shows you how to solve a common problem:
