@@ -22,6 +22,8 @@ You can install the development version of fastMN from
 devtools::install_github("ziyuliu1999/fastMN")
 ```
 
+You may need to add in your personal github token.
+
 ## Functions
 
 Three main functions introduced in the fastMN package
@@ -59,7 +61,12 @@ U <- matrix(0.5,nrow=n,ncol=n) + 0.5*diag(n)
 V <- matrix(0.8,nrow=p,ncol=p) + 0.2*diag(p)
 Y<- fast_rmatnorm(n = n, p = p, U_cov = U, V_cov=V)
 M = matrix(0, nrow = n, ncol = p)
-p_val = fast_dmatnorm(Y, M, U, V)
+p_val = fast_dmatnorm(Y, M, U, V) # covariace matrix
+p_val
+#> [1] -3114.713
+p_val2 = fast_dmatnorm(Y, M, solve(U), solve(V), Precision = TRUE) # precision matrix
+p_val2
+#> [1] -3114.713
 ```
 
 *Example for the fast_pnormmat*
@@ -77,8 +84,12 @@ V_cov <- crossprod(matrixV)  # Column covariance matrix
 Lower <- matrix(-10, nrow = n, ncol = p)
 Upper <- matrix(10, nrow = n, ncol = p)
 #'
-# Compute the CDF using the naive Monte Carlo method
-fast_pnormmat(Lower = Lower, Upper = Upper, M = M, U_cov = U_cov, V_cov = V_cov, method = "naive_monte_carlo", N = 1000)
+# Approximate the CDF using the naive Monte Carlo method
+fast_pnormmat(Lower = Lower, Upper = Upper, M = M, U_cov = U_cov, V_cov = V_cov, method = "naive_monte_carlo", N = 3000)
 #>              method   cdf   log_cdf
-#> 1 naive monte carlo 0.287 -1.248273
+#> 1 naive monte carlo 0.267 -1.320507
+# Compute the CDF using the mvnorm::pmvnorm and precision matrix
+fast_pnormmat(Lower = Lower, Upper = Upper, M = M, U_prec = solve(U_cov), V_prec = solve(V_cov), method = "pmvnorm", useCov = FALSE)
+#>               method      cdf   log_cdf
+#> 1 mvnorm computation 0.265376 -1.326608
 ```
