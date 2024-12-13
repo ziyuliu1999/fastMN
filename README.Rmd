@@ -30,6 +30,7 @@ You can install the development version of fastMN from [GitHub](https://github.c
 # install.packages("devtools")
 devtools::install_github("ziyuliu1999/fastMN")
 ```
+You may need to add in your personal github token.
 
 ## Functions
 
