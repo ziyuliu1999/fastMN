@@ -9,11 +9,9 @@
 coverage](https://codecov.io/gh/ziyuliu1999/fastMN/graph/badge.svg)](https://app.codecov.io/gh/ziyuliu1999/fastMN)
 <!-- badges: end -->
 
-<!-- badges: start -->
-[![R-CMD-check](https://github.com/ziyuliu1999/fastMN/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ziyuliu1999/fastMN/actions/workflows/R-CMD-check.yaml)
-<!-- badges: end -->
-
-The goal of fastMN is to …
+The goal of fastMN is to efficiently compute the PDF and CDF of the
+matrix normal distribution and to rapidly generate random samples from
+it.
 
 ## Installation
 
@@ -25,11 +23,13 @@ You can install the development version of fastMN from
 devtools::install_github("ziyuliu1999/fastMN")
 ```
 
+## Functions
+
 ## Example
 
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(fastMN)
-## basic example code
+set.seed(1)
 ```

@@ -2,7 +2,7 @@
 % Please edit documentation in R/fast_matrix_normal.R
 \name{fast_rmatnorm}
 \alias{fast_rmatnorm}
-\title{Random generation for the matrix normal distribution accepting either covariance or precision}
+\title{Random generation for the matrix normal distribution accepting both covariance and precision}
 \usage{
 fast_rmatnorm(
   num_samp = 1,
@@ -42,12 +42,12 @@ fast_rmatnorm(
 If num_samp = 1, it will return a matrix. Otherwise a 3-D array will be returned
 }
 \description{
-Random generation for the matrix normal distribution accepting either covariance or precision
+Random generation for the matrix normal distribution accepting both covariance and precision
 }
 \examples{
 n = 100
 p = 100
 U <- matrix(0.5,nrow=n,ncol=n) + 0.5*diag(n)
 V <- matrix(0.8,nrow=p,ncol=p) + 0.2*diag(p)
-Y<- sample_matrix_normal(U_cov = U, V_cov=V)
+Y<- fast_rmatnorm(U_cov = U, V_cov=V)
 }
