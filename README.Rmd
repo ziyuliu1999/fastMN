@@ -13,13 +13,12 @@ knitr::opts_chunk$set(
 )
 ```
 
-
 # fastMN
 
 <!-- badges: start -->
-  [![R-CMD-check](https://github.com/ziyuliu1999/fastMN/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ziyuliu1999/fastMN/actions/workflows/R-CMD-check.yaml)
-  <!-- badges: end -->
-  
+[![R-CMD-check](https://github.com/ziyuliu1999/fastMN/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ziyuliu1999/fastMN/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
 The goal of fastMN is to efficiently compute the PDF and CDF of the matrix normal distribution and to rapidly generate random samples from it.
 
 ## Installation

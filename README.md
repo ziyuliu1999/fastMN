@@ -85,11 +85,22 @@ Lower <- matrix(-10, nrow = n, ncol = p)
 Upper <- matrix(10, nrow = n, ncol = p)
 #'
 # Approximate the CDF using the naive Monte Carlo method
+<<<<<<< HEAD
 fast_pnormmat(Lower = Lower, Upper = Upper, M = M, U_cov = U_cov, V_cov = V_cov, method = "naive_monte_carlo", N = 3000)
+=======
+fast_pnormmat(Lower = Lower, Upper = Upper, M = M, U_cov = U_cov, V_cov = V_cov, method = "naive_monte_carlo", N = 1000)
+>>>>>>> 7cfdce0ab3cb40db9c9e29b927b398d6be83f94b
 #>              method   cdf   log_cdf
 #> 1 naive monte carlo 0.267 -1.320507
 # Compute the CDF using the mvnorm::pmvnorm and precision matrix
 fast_pnormmat(Lower = Lower, Upper = Upper, M = M, U_prec = solve(U_cov), V_prec = solve(V_cov), method = "pmvnorm", useCov = FALSE)
 #>               method      cdf   log_cdf
 #> 1 mvnorm computation 0.265376 -1.326608
+```
+
+``` r
+# Compute the CDF using the mvnorm::pmvnorm
+fast_pnormmat(Lower = Lower, Upper = Upper, M = M, U_cov = U_cov, V_cov = V_cov, method = "pmvnorm")
+#>               method       cdf log_cdf
+#> 1 mvnorm computation 0.2653779 -1.3266
 ```
