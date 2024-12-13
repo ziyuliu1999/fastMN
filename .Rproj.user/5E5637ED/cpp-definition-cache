@@ -1,1 +1,19 @@
-[]
+[
+    {
+        "file": "/Users/ziyuliu/Documents/GitHub/fastMN/src/fast_matrix_normal.cpp",
+        "file_last_write": 1734064381.0,
+        "definitions": [
+            {
+                "usr": "c:@F@sum_of_squares#$@N@Rcpp@S@Matrix>#VI14#@N@Rcpp@ST>1#T@PreserveStorage#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "sum_of_squares(NumericMatrix)",
+                "file": "/Users/ziyuliu/Documents/GitHub/fastMN/src/fast_matrix_normal.cpp",
+                "line": 5,
+                "column": 8,
+                "hidden": false
+            }
+        ],
+        "hidden": false
+    }
+]

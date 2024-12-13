@@ -49,5 +49,5 @@ n = 100
 p = 100
 U <- matrix(0.5,nrow=n,ncol=n) + 0.5*diag(n)
 V <- matrix(0.8,nrow=p,ncol=p) + 0.2*diag(p)
-Y<- fast_rmatnorm(U_cov = U, V_cov=V)
+Y <- fast_rmatnorm(U_cov = U, V_cov=V)
 }
